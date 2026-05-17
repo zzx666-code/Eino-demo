@@ -17,9 +17,10 @@ func main() {
 	ctx := context.Background()
 
 	chatModel, err := openai.NewChatModel(ctx, &openai.ChatModelConfig{
-		BaseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1",
-		APIKey:  os.Getenv("DASHSCOPE_API_KEY"),
-		Model:   "qwen-plus",
+		BaseURL:     "https://dashscope.aliyuncs.com/compatible-mode/v1",
+		APIKey:      os.Getenv("DASHSCOPE_API_KEY"),
+		Model:       "qwen3.6-plus",
+		Temperature: ptr(float32(0.3)),
 	})
 	if err != nil {
 		log.Fatalf("创建 ChatModel 失败: %v", err)
@@ -54,4 +55,7 @@ func main() {
 	}
 
 	fmt.Println() // 最后换行
+}
+func ptr[T any](v T) *T {
+	return &v
 }
