@@ -37,7 +37,7 @@ func main() {
 		AppendLambda(compose.InvokableLambda(func(ctx context.Context, msg *schema.Message) (string, error) {
 			// 自定义后处理：提取内容并格式化
 			return fmt.Sprintf("【翻译结果】%s", msg.Content), nil
-		}))
+		}), compose.WithNodeName("后处理"))
 
 	runner, err := chain.Compile(ctx)
 	if err != nil {
