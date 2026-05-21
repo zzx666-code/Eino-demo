@@ -37,8 +37,7 @@ func main() {
 			schema.SystemMessage("你是一个专业的技术助手，一句话回答问题。"),
 			schema.UserMessage(input),
 		}, nil
-	}), compose.WithNodeName("消息构建"))
-	chain.AppendChatModel(model, compose.WithNodeName("通义千问"))
+	}), compose.WithNodeName("消息构建")).AppendChatModel(model, compose.WithNodeName("通义千问"))
 
 	// 构建通用回调处理器
 	handler := callbacks.NewHandlerBuilder().
